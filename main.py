@@ -1,8 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-URL = 'https://cars.av.by/filter?brands[0][brand]=683&brands[0][model]=5897&brands[0][generation]=4615&sort=3'
-
 
 def get_html(url):
     try:
@@ -35,11 +33,15 @@ def get_data():
         for key, value in data.items():
             print(f"{key}: {value}")
         print("\n")
-        quantity+=1
+        quantity += 1
+
 
 def main():
-    get_html(URL)
-    get_data()
+    for i in range(1, 4):
+        url = f'https://cars.av.by/filter?brands[0][brand]=683&brands[0][model]=5897&brands[0]' \
+              f'[generation]=4615&page={i}&sort=3'
+        get_html(url)
+        get_data()
 
 
 if __name__ == "__main__":
